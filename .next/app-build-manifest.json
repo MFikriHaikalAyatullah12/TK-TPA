@@ -72,14 +72,6 @@
       "static/chunks/176-5c7a7716ba385413.js",
       "static/chunks/app/santri/page-8d73e5f750ff7b47.js"
     ],
-    "/galeri/page": [
-      "static/chunks/webpack-ca852bf3c18cdabd.js",
-      "static/chunks/fd9d1056-fe71d9d3341a0a8a.js",
-      "static/chunks/938-0cae05d75ea6ae3d.js",
-      "static/chunks/main-app-c764ef6de6a3e381.js",
-      "static/chunks/176-5c7a7716ba385413.js",
-      "static/chunks/app/galeri/page-78c593f2454a69cf.js"
-    ],
     "/dashboard/page": [
       "static/chunks/webpack-ca852bf3c18cdabd.js",
       "static/chunks/fd9d1056-fe71d9d3341a0a8a.js",
@@ -87,6 +79,14 @@
       "static/chunks/main-app-c764ef6de6a3e381.js",
       "static/chunks/176-5c7a7716ba385413.js",
       "static/chunks/app/dashboard/page-adaf4559299be26e.js"
+    ],
+    "/galeri/page": [
+      "static/chunks/webpack-ca852bf3c18cdabd.js",
+      "static/chunks/fd9d1056-fe71d9d3341a0a8a.js",
+      "static/chunks/938-0cae05d75ea6ae3d.js",
+      "static/chunks/main-app-c764ef6de6a3e381.js",
+      "static/chunks/176-5c7a7716ba385413.js",
+      "static/chunks/app/galeri/page-78c593f2454a69cf.js"
     ],
     "/auth/login/page": [
       "static/chunks/webpack-ca852bf3c18cdabd.js",
@@ -135,13 +135,13 @@
       "static/chunks/176-5c7a7716ba385413.js",
       "static/chunks/app/admin/kontak/page-be5ebc3d121b8e2e.js"
     ],
-    "/admin/profile/page": [
+    "/admin/page": [
       "static/chunks/webpack-ca852bf3c18cdabd.js",
       "static/chunks/fd9d1056-fe71d9d3341a0a8a.js",
       "static/chunks/938-0cae05d75ea6ae3d.js",
       "static/chunks/main-app-c764ef6de6a3e381.js",
       "static/chunks/176-5c7a7716ba385413.js",
-      "static/chunks/app/admin/profile/page-baab3e6875923ad8.js"
+      "static/chunks/app/admin/page-c6d476663b5ee264.js"
     ],
     "/admin/pengajar/page": [
       "static/chunks/webpack-ca852bf3c18cdabd.js",
@@ -151,13 +151,13 @@
       "static/chunks/176-5c7a7716ba385413.js",
       "static/chunks/app/admin/pengajar/page-307eaf593ddd7b25.js"
     ],
-    "/admin/page": [
+    "/admin/profile/page": [
       "static/chunks/webpack-ca852bf3c18cdabd.js",
       "static/chunks/fd9d1056-fe71d9d3341a0a8a.js",
       "static/chunks/938-0cae05d75ea6ae3d.js",
       "static/chunks/main-app-c764ef6de6a3e381.js",
       "static/chunks/176-5c7a7716ba385413.js",
-      "static/chunks/app/admin/page-c6d476663b5ee264.js"
+      "static/chunks/app/admin/profile/page-baab3e6875923ad8.js"
     ],
     "/admin/reset/page": [
       "static/chunks/webpack-ca852bf3c18cdabd.js",
