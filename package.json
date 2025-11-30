@@ -1,0 +1,56 @@
+{
+  "name": "tk-tpa-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@next-auth/prisma-adapter": "^1.0.7",
+    "@prisma/client": "^5.7.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.3",
+    "date-fns": "^2.30.0",
+    "file-saver": "^2.0.5",
+    "framer-motion": "^10.16.16",
+    "jose": "^6.1.2",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.294.0",
+    "next": "14.0.4",
+    "next-auth": "^4.24.13",
+    "prisma": "^5.7.1",
+    "react": "^18.2.0",
+    "react-calendar": "^4.6.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.48.2",
+    "react-intersection-observer": "^9.5.3",
+    "swiper": "^11.0.5",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.0.4",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.3"
+  },
+  "description": "Website TK TPA Al-Hidayah",
+  "keywords": [
+    "tpa",
+    "quran",
+    "islamic",
+    "education",
+    "nextjs"
+  ],
+  "author": "TK TPA Al-Hidayah",
+  "license": "MIT"
+}

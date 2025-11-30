@@ -1,0 +1,66 @@
+import { NextRequest, NextResponse } from 'next/server'
+import { verifyJWT } from '@/lib/auth'
+import { prisma } from '@/lib/prisma'
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const token = request.cookies.get('admin-token')?.value
+
+    if (!token) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const payload = await verifyJWT(token)
+    if (!payload) {
+      return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
+    }
+
+    const data = await request.json()
+
+    const pengajar = await prisma.pengajar.update({
+      where: { id: params.id },
+      data: {
+        nama: data.nama,
+        bidang: data.jabatan || data.bidang,
+        pengalaman: data.pengalaman || null,
+        sertifikasi: data.sertifikasi || null,
+        jadwal: data.jadwal || null
+      }
+    })
+
+    return NextResponse.json(pengajar)
+  } catch (error) {
+    console.error('Pengajar update error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const token = request.cookies.get('admin-token')?.value
+
+    if (!token) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const payload = await verifyJWT(token)
+    if (!payload) {
+      return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
+    }
+
+    await prisma.pengajar.delete({
+      where: { id: params.id }
+    })
+
+    return NextResponse.json({ message: 'Pengajar deleted successfully' })
+  } catch (error) {
+    console.error('Pengajar delete error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}
