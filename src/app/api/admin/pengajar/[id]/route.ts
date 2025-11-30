@@ -4,13 +4,13 @@ import { prisma } from '@/lib/prisma'
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic'
-export const dynamicParams = true
+export const runtime = 'nodejs'
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: { id: string } }
 ) {
-  const { id } = await params
+  const { id } = context.params
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -45,9 +45,9 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: { id: string } }
 ) {
-  const { id } = await params
+  const { id } = context.params
   try {
     const token = request.cookies.get('admin-token')?.value
 

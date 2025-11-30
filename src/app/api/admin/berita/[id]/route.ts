@@ -4,14 +4,14 @@ import { prisma } from '@/lib/prisma'
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic'
-export const dynamicParams = true
+export const runtime = 'nodejs'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: { id: string } }
 ) {
-  const { id } = await params
   try {
+    const { id } = context.params
     const token = request.cookies.get('admin-token')?.value
 
     if (!token) {
@@ -47,10 +47,10 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: { id: string } }
 ) {
-  const { id } = await params
   try {
+    const { id } = context.params
     const token = request.cookies.get('admin-token')?.value
 
     if (!token) {
@@ -94,10 +94,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: { id: string } }
 ) {
-  const { id } = await params
   try {
+    const { id } = context.params
     const token = request.cookies.get('admin-token')?.value
 
     if (!token) {
