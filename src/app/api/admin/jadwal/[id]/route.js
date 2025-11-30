@@ -1,17 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { verifyJWT } from '../../../../../lib/auth'
-import { prisma } from '../../../../../lib/prisma'
+const { NextResponse } = require('next/server')
+const { verifyJWT } = require('../../../../../lib/auth')
+const { prisma } = require('../../../../../lib/prisma')
 
-// Force dynamic rendering for this route
 export const dynamic = 'force-dynamic'
-export const runtime = 'nodejs'
 
-export async function PUT(
-  request: NextRequest,
-  context: { params: { id: string } }
-) {
-  const { id } = context.params
+export async function PUT(request, context) {
   try {
+    const { id } = context.params
     const token = request.cookies.get('admin-token')?.value
 
     if (!token) {
@@ -43,12 +38,9 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  request: NextRequest,
-  context: { params: { id: string } }
-) {
-  const { id } = context.params
+export async function DELETE(request, context) {
   try {
+    const { id } = context.params
     const token = request.cookies.get('admin-token')?.value
 
     if (!token) {

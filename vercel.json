@@ -1,12 +1,3 @@
 {
-  "buildCommand": "prisma generate && next build",
-  "installCommand": "npm ci",
-  "functions": {
-    "src/app/api/**/*.ts": {
-      "maxDuration": 30
-    }
-  },
-  "env": {
-    "PRISMA_GENERATE_DATAPROXY": "true"
-  }
+  "buildCommand": "prisma generate && npm run build"
 }

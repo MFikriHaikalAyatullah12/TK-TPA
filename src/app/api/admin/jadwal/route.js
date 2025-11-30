@@ -1,11 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { verifyJWT } from '../../../../lib/auth'
-import { prisma } from '../../../../lib/prisma'
+const { NextResponse } = require('next/server')
+const { verifyJWT } = require('../../../../lib/auth')
+const { prisma } = require('../../../../lib/prisma')
 
-// Force dynamic rendering for this route
 export const dynamic = 'force-dynamic'
 
-export async function GET(request: NextRequest) {
+export async function GET(request) {
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -27,19 +26,19 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'TPA info not found' }, { status: 404 })
     }
 
-    const pengajar = await prisma.pengajar.findMany({
+    const jadwal = await prisma.jadwal.findMany({
       where: { tpaInfoId: user.tpaInfo.id },
-      orderBy: { createdAt: 'desc' }
+      orderBy: [{ hari: 'asc' }, { waktu: 'asc' }]
     })
 
-    return NextResponse.json(pengajar)
+    return NextResponse.json(jadwal)
   } catch (error) {
-    console.error('Pengajar fetch error:', error)
+    console.error('Jadwal fetch error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -63,20 +62,27 @@ export async function POST(request: NextRequest) {
 
     const data = await request.json()
 
-    const pengajar = await prisma.pengajar.create({
+    if (!data.hari || !data.waktuMulai || !data.kegiatan) {
+      return NextResponse.json(
+        { error: 'Hari, waktu mulai, and kegiatan are required' },
+        { status: 400 }
+      )
+    }
+
+    const jadwal = await prisma.jadwal.create({
       data: {
-        tpaInfoId: user.tpaInfo.id,
-        nama: data.nama,
-        bidang: data.jabatan,
-        pengalaman: data.pengalaman || null,
-        sertifikasi: data.sertifikasi || null,
-        jadwal: data.jadwal || null
+        hari: data.hari,
+        waktu: data.waktuMulai,
+        kegiatan: data.kegiatan,
+        tempat: data.tempat || null,
+        pengajar: data.pengajar || null,
+        tpaInfoId: user.tpaInfo.id
       }
     })
 
-    return NextResponse.json(pengajar, { status: 201 })
+    return NextResponse.json(jadwal, { status: 201 })
   } catch (error) {
-    console.error('Pengajar create error:', error)
+    console.error('Jadwal create error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

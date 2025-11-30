@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { verifyJWT } from './src/lib/auth'
+
+// Import dari lib di root
+const { verifyJWT } = require('./lib/auth')
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
