@@ -4,11 +4,13 @@ import { prisma } from '@/lib/prisma'
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -35,7 +37,7 @@ export async function PUT(
     // Verify the santri belongs to this user's TPA
     const existingSantri = await prisma.santri.findFirst({
       where: {
-        id: params.id,
+        id,
         tpaInfoId: user.tpaInfo.id
       }
     })
@@ -45,7 +47,7 @@ export async function PUT(
     }
 
     const santri = await prisma.santri.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         namaLengkap: data.nama,
         tempatLahir: data.tempatLahir,
@@ -72,8 +74,9 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -98,7 +101,7 @@ export async function DELETE(
     // Verify the santri belongs to this user's TPA
     const existingSantri = await prisma.santri.findFirst({
       where: {
-        id: params.id,
+        id,
         tpaInfoId: user.tpaInfo.id
       }
     })
@@ -108,7 +111,7 @@ export async function DELETE(
     }
 
     await prisma.santri.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({ message: 'Santri deleted successfully' })

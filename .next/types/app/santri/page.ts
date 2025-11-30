@@ -1,4 +1,4 @@
-// File: D:\FILE FIKRI\PROGRAM CODINGAN\TK TPA\src\app\santri\page.tsx
+// File: /workspaces/TK-TPA/src/app/santri/page.tsx
 import * as entry from '../../../../src/app/santri/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

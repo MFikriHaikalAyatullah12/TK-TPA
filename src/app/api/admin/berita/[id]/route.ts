@@ -4,11 +4,13 @@ import { prisma } from '@/lib/prisma'
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -21,12 +23,12 @@ export async function GET(
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
     }
 
-    if (!params?.id) {
+    if (!id) {
       return NextResponse.json({ error: 'ID is required' }, { status: 400 })
     }
 
     const berita = await prisma.berita.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         tpaInfo: true
       }
@@ -45,8 +47,9 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -59,7 +62,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
     }
 
-    if (!params?.id) {
+    if (!id) {
       return NextResponse.json({ error: 'ID is required' }, { status: 400 })
     }
 
@@ -70,7 +73,7 @@ export async function PUT(
     }
 
     const berita = await prisma.berita.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         judul: data.judul,
         konten: data.isi || data.konten,
@@ -91,8 +94,9 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -105,12 +109,12 @@ export async function DELETE(
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
     }
 
-    if (!params?.id) {
+    if (!id) {
       return NextResponse.json({ error: 'ID is required' }, { status: 400 })
     }
 
     await prisma.berita.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({ message: 'Berita deleted successfully' })

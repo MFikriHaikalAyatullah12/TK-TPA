@@ -1,4 +1,4 @@
-// File: D:\FILE FIKRI\PROGRAM CODINGAN\TK TPA\src\app\api\public\berita\route.ts
+// File: /workspaces/TK-TPA/src/app/api/public/berita/route.ts
 import * as entry from '../../../../../../src/app/api/public/berita/route.js'
 import type { NextRequest } from 'next/server.js'
 

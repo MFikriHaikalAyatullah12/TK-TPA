@@ -1,4 +1,4 @@
-// File: D:\FILE FIKRI\PROGRAM CODINGAN\TK TPA\src\app\api\admin\santri\[id]\route.ts
+// File: /workspaces/TK-TPA/src/app/api/admin/santri/[id]/route.ts
 import * as entry from '../../../../../../../src/app/api/admin/santri/[id]/route.js'
 import type { NextRequest } from 'next/server.js'
 

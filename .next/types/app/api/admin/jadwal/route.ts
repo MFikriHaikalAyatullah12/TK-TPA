@@ -1,4 +1,4 @@
-// File: D:\FILE FIKRI\PROGRAM CODINGAN\TK TPA\src\app\api\admin\jadwal\route.ts
+// File: /workspaces/TK-TPA/src/app/api/admin/jadwal/route.ts
 import * as entry from '../../../../../../src/app/api/admin/jadwal/route.js'
 import type { NextRequest } from 'next/server.js'
 

@@ -4,11 +4,13 @@ import { prisma } from '@/lib/prisma'
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -24,7 +26,7 @@ export async function PUT(
     const data = await request.json()
 
     const pengajar = await prisma.pengajar.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         nama: data.nama,
         bidang: data.jabatan || data.bidang,
@@ -43,8 +45,9 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   try {
     const token = request.cookies.get('admin-token')?.value
 
@@ -58,7 +61,7 @@ export async function DELETE(
     }
 
     await prisma.pengajar.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({ message: 'Pengajar deleted successfully' })
